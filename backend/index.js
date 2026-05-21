@@ -11,27 +11,8 @@ connectDB();
 
 const app = express();
 
-// Middleware
-const allowedOrigins = [
-  process.env.FRONTEND_URL,
-  'http://localhost:5173',
-  'http://localhost:3000',
-  'https://ai-interview-gd-analyzer.vercel.app'
-];
-
 app.use(cors({
-  origin: (origin, callback) => {
-    // allow requests with no origin (like mobile apps or curl requests)
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) !== -1 || allowedOrigins.includes('*')) {
-      return callback(null, true);
-    }
-    // Allow vercel preview deployments dynamically
-    if (origin.endsWith('.vercel.app')) {
-      return callback(null, true);
-    }
-    return callback(null, true); // Fallback to allow during development
-  },
+  origin: '*',
   credentials: true
 }));
 
@@ -85,8 +66,8 @@ app.use(notFound);
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server running in production-ready mode on port ${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running in production-ready mode on port ${PORT} (0.0.0.0)`);
 });
 
 // Export for Vercel Serverless deployments
