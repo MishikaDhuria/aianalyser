@@ -31,7 +31,7 @@ const ChatbotAssistant = () => {
     setLoading(true);
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/assistant/chat`, {
+      const response = await fetch(`${(import.meta.env.VITE_API_URL || 'http://localhost:5000').replace(/\/+$/, '')}/api/assistant/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

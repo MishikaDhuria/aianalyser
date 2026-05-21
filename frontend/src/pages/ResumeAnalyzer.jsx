@@ -18,7 +18,7 @@ const ResumeAnalyzer = () => {
 
   const fetchReportsHistory = async () => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/resume/reports`, {
+      const response = await fetch(`${(import.meta.env.VITE_API_URL || 'http://localhost:5000').replace(/\/+$/, '')}/api/resume/reports`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
@@ -57,7 +57,7 @@ const ResumeAnalyzer = () => {
     formData.append('targetSkills', targetSkills);
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/resume/analyze`, {
+      const response = await fetch(`${(import.meta.env.VITE_API_URL || 'http://localhost:5000').replace(/\/+$/, '')}/api/resume/analyze`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`

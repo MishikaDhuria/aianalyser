@@ -17,7 +17,7 @@ const CodingArena = () => {
 
   const fetchProblems = async () => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/coding/problems`);
+      const response = await fetch(`${(import.meta.env.VITE_API_URL || 'http://localhost:5000').replace(/\/+$/, '')}/api/coding/problems`);
       const data = await response.json();
       if (data.success) {
         setProblems(data.problems);
@@ -48,7 +48,7 @@ const CodingArena = () => {
     setOutput(null);
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/coding/run`, {
+      const response = await fetch(`${(import.meta.env.VITE_API_URL || 'http://localhost:5000').replace(/\/+$/, '')}/api/coding/run`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

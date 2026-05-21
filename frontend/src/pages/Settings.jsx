@@ -61,7 +61,7 @@ const Settings = () => {
         .map((s) => s.trim())
         .filter((s) => s.length > 0);
 
-      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/auth/profile`, {
+      const response = await fetch(`${(import.meta.env.VITE_API_URL || 'http://localhost:5000').replace(/\/+$/, '')}/api/auth/profile`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

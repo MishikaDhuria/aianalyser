@@ -26,7 +26,7 @@ const InterviewSetup = () => {
     const formattedSkills = skills.split(',').map((s) => s.trim()).filter((s) => s.length > 0);
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/interviews/setup`, {
+      const response = await fetch(`${(import.meta.env.VITE_API_URL || 'http://localhost:5000').replace(/\/+$/, '')}/api/interviews/setup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
